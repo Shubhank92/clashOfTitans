@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <title> 
+      Clash Of Titans
+    </title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <section class="hero  is-bold">
+        <div class="hero-body">
+          <div class="container">
+            <h1 class="title">
+              Clash Of Titans
+              <span class="icon">
+                <i class="fas fa-fist-raised"></i>
+              </span>
+            </h1>
+          </div>
+        </div>
+      </section>
+      <div class="container">
+        <div class="columns">
+
+          <div class="column">
+            <div id="left-autocomplete"><</div>
+            <div id="left-summary"></div>
+          </div>
+
+          <div class="column">
+            <div id="right-autocomplete"></div>
+            <div id="right-summary"></div>
+          </div>
+
+        </div>
+
+        <div class="column is-half notification  tutorial">
+          <h1 class="title">Search for a Titan on Both Sides</h1>
+          <p class="subtitle">We will tell you which one is the best!</p>
+        </div>
+      </div>
+      <div class="push"></div>
+    </div>
+    <div class="footer">
+      <p>*REFRESH after each comparsion for better results!</p>
+      <p>© 2020 - WebApp developed by <a href="https://blissful-brattain-623b43.netlify.app/" target="_blank"> Shubhank Gaba</a></p>
+    </div>
+    <script src="utils.js"></script>
+    <script src="autocomplete.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,91 @@
+.tutorial {
+  width: 600px;
+  text-align: center;
+  margin: auto;
+  background-color: #0e1555;
+  color: white;
+}
+
+figure.image {
+  display: flex;
+  justify-content: center;
+  background-color: black;
+}
+
+figure .image img {
+  width: 170px;
+}
+
+.notification {
+  margin-top: 20px !important;
+}
+
+.results {
+  max-height: 500px;
+  overflow-y: scroll;
+}
+
+.title .icon {
+  margin-left: 15px;
+}
+
+.hero {
+  margin-bottom: 20px;
+  background-color: #0e1555;
+}
+
+.forms {
+  display: flex;
+  justify-content: space-around;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  height: 60px;
+}
+
+.dropdown-item img {
+  height: 50px;
+  margin-right: 10px;
+}
+
+html {
+  background-color: #ffeadb;
+  height: 100%;
+}
+
+.title {
+  color: white;
+  letter-spacing: 1px;
+  font-size: 3em;
+}
+
+body {
+  font-family: 'Bebas Neue', cursive;
+  height: 100%;
+
+}
+
+.footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #0e1555;
+  color: white;
+  height: 70px;
+}
+
+.hero-body {
+  padding: 2em 1.5rem;
+}
+
+.wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -70px;
+}
+
+.push {
+  height: 70px;
+}
