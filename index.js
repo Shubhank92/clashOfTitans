@@ -1,10 +1,23 @@
 const access_token = 305007910861456;
 
+function imgError(image) {
+    image.onerror = "";
+    image.src = 'noImg.jpg';
+    return true;
+}
+
 const autoCompleteConfig = {
     renderOption(titan) {
-        const imgSrc = titan.image.url === 'N/A' ? '' : titan.image.url;
+        const imgSrc = titan.image.url;
+        // function imgError(image) {
+        //     image.onerror = "";
+        //     image.src = `${imgSrc}`;
+        //     return true;
+        // }
+        // const imgSrc = titan.image.url === 'N/A' ? '' : titan.image.url;
          return `
-            <img src="${imgSrc}" />
+         <img src="${imgSrc}" 
+         onerror="imgError(this)" />
             ${titan.name} 
             (${titan.biography["full-name"]})
         `;
@@ -15,10 +28,27 @@ const autoCompleteConfig = {
     async fetchData(e) {
         const req = await axios.get(`https://cors-anywhere.herokuapp.com/https://superheroapi.com/api/${access_token}/search/${e}`);
         
+        console.log(req.data.results)
         if (req.status !== 200) {
             return []
         }
-        return req.data.results
+        let data = req.data.results;
+        let GoodData = [];
+        let BadData = [];
+        for (let i=0; i < data.length - 1; i++) {
+            if (data[i].powerstats.combat === 'null' &&
+                data[i].powerstats.durability === 'null' &&
+                data[i].powerstats.intelligence === 'null' &&
+                data[i].powerstats.speed === 'null' &&
+                data[i].powerstats.power === 'null') 
+            {
+                BadData.push(data[i])
+            } else {
+                GoodData.push(data[i])
+            }
+        } 
+
+        return GoodData
     }
 };
 
