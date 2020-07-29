@@ -9,12 +9,6 @@ function imgError(image) {
 const autoCompleteConfig = {
     renderOption(titan) {
         const imgSrc = titan.image.url;
-        // function imgError(image) {
-        //     image.onerror = "";
-        //     image.src = `${imgSrc}`;
-        //     return true;
-        // }
-        // const imgSrc = titan.image.url === 'N/A' ? '' : titan.image.url;
          return `
          <img src="${imgSrc}" 
          onerror="imgError(this)" />
@@ -28,7 +22,6 @@ const autoCompleteConfig = {
     async fetchData(e) {
         const req = await axios.get(`https://cors-anywhere.herokuapp.com/https://superheroapi.com/api/${access_token}/search/${e}`);
         
-        console.log(req.data.results)
         if (req.status !== 200) {
             return []
         }
