@@ -158,4 +158,3 @@ const titanTemplate = (titanDetail) => {
     `;
 }
 
-// try to add a loader when the request for a single hero is in process
