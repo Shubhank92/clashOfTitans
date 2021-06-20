@@ -1,17 +1,10 @@
 const access_token = 305007910861456;
 
-function imgError(image) {
-    image.onerror = "";
-    image.src = 'noImg.jpg';
-    return true;
-}
-
 const autoCompleteConfig = {
     renderOption(titan) {
-        const imgSrc = titan.image.url;
+        const imgSrc = titan.image.url === 'N/A' ? '' : titan.image.url;
          return `
-         <img src="${imgSrc}" 
-         onerror="imgError(this)" />
+            <img src="${imgSrc}" />
             ${titan.name} 
             (${titan.biography["full-name"]})
         `;
@@ -20,11 +13,8 @@ const autoCompleteConfig = {
         return titan.name;
     },
     async fetchData(e) {
-        const req = await axios.get(`https://cors-anywhere.herokuapp.com/https://superheroapi.com/api/${access_token}/search/${e}`);
-        
-        if (req.status !== 200) {
-            return []
-        }
+        const req = await axios.get(`http://localhost:3000/listofheros/${e}`);
+             
         let data = req.data.results;
         let GoodData = [];
         let BadData = [];
@@ -63,17 +53,23 @@ createAutoComplete({
     },
 });
 
+callForLoader = () => {
+    return new Promise((resolve) => setTimeout(() => resolve(), 2000))
+}
+
 let leftTitan;
 let rightTitan;
 
 const onTitanSelect = async function(titan, summary, side) {
-    const titanReq = await axios.get(`https://cors-anywhere.herokuapp.com/https://superheroapi.com/api/${access_token}/${titan.id}`);
+    const titanReq = await axios.get(`http://localhost:3000/hero/${titan.id}`);
     
+    callForLoader();
+
     document.querySelector(`${summary}`).innerHTML = titanTemplate(titanReq.data)
 
     if(side === 'left') {
         leftTitan = titanReq.data;
-    }else {
+    } else {
         rightTitan = titanReq.data;
     }
     if(leftTitan && rightTitan) {
@@ -81,7 +77,20 @@ const onTitanSelect = async function(titan, summary, side) {
     }
 };
 
+const deleteBtn = function() {
+    const rightSummary = document.querySelector('#right-summary');
+    const leftSummary = document.querySelector('#left-summary');
+    const leftInput = document.querySelector('#left-autocomplete .input');
+    const rightInput = document.querySelector('#right-autocomplete .input');
+
+    leftInput.value = '';
+    rightInput.value = '';
+    rightSummary.innerHTML = '';
+    leftSummary.innerHTML = '';
+}
+
 const runComparison = () => {
+    // leftSideStats is an object
     const leftSideStats = document.querySelectorAll('#left-summary .notification');
     const rightSideStats = document.querySelectorAll('#right-summary .notification');
 
@@ -149,3 +158,4 @@ const titanTemplate = (titanDetail) => {
     `;
 }
 
+// try to add a loader when the request for a single hero is in process
