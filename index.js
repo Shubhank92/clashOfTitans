@@ -13,7 +13,7 @@ const autoCompleteConfig = {
         return titan.name;
     },
     async fetchData(e) {
-        const req = await axios.get(`http://localhost:3000/listofheros/${e}`);
+        const req = await axios.get(`https://fast-shore-92686.herokuapp.com/listofheros/${e}`);
              
         let data = req.data.results;
         let GoodData = [];
@@ -61,7 +61,7 @@ let leftTitan;
 let rightTitan;
 
 const onTitanSelect = async function(titan, summary, side) {
-    const titanReq = await axios.get(`http://localhost:3000/hero/${titan.id}`);
+    const titanReq = await axios.get(`https://fast-shore-92686.herokuapp.com/hero/${titan.id}`);
     
     callForLoader();
 
@@ -158,3 +158,4 @@ const titanTemplate = (titanDetail) => {
     `;
 }
 
+// try to add a loader when the request for a single hero is in process
